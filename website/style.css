@@ -1,111 +1,143 @@
-body{
-    background: #fffff8;
+/* CSS variables */
+:root {
+    --header-shadow: 0.05em 0.05em 0.05em rgba(59, 74, 107, 0.5);
+    --input-text-color: #f0d43a;
+    --label-text-color: #fff;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-#app{
+#app {
     display: grid;
-    grid-auto-rows: minmax(150px, auto);
-    /* grid-template-columns:  */
-    height:100vh;
-    background: #f23557;
-    color: #f0d43a;
+    grid-auto-flow: column;
+    grid-template-rows: auto auto 50% 12%;
+    grid-template-columns: 40% 30%;
+    grid-column-gap: 10%;
+    height: 85vh;
+    background-image: linear-gradient(-45deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+    color: #fff;
     justify-content: center;
     grid-gap: 1em;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
-}
-
-.holder{
-
-}
-
-.entry{
-    background: rgba(59, 74, 107, .4);
-}
-
-#entryHolder{
-
-}
-
-#date{
-
-}
-
-#temp{
-
-}
-
-#content{
-
+    padding-bottom: 15vh;
 }
 
 .headline {
-
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin-top: 2%;
+    font-size: 2em;
+    text-shadow: var(--header-shadow);
 }
-.title{
 
+.headline img {
+    height: 1.5em;
+    vertical-align: middle;
+    filter: drop-shadow(var(--header-shadow))
+}
+
+.entry {
+    background: rgba(59, 74, 107, .4);
+    grid-column-start: 2;
+    grid-row-start: 2;
+    grid-row-end: 5;
+}
+
+#retrievedData {
+    display: none;
+}
+
+#dataPlaceholder {
+    background: url(images/weather-icon.png) no-repeat;
+    background-size: 100%;
+    filter: blur(2px) grayscale(0.8) opacity(0.4);
+}
+
+#entryHolder {
+    margin-left: 10%;
+}
+
+.title {
+    text-align: center;
+    color: var(--input-text-color);
+    font-size: 1.1em;
+    margin: 1em;
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
-label{
-    display:block;
-    font-size: 27px;
+label {
+    display: block;
+    color: var(--label-text-color);
+    font-size: 1.2em;
 }
 
-input{
-    display:block;
-    height: 60px;
-    width: 320px;
-    background:#22b2da;
-    color: #f0d43a;
+input {
+    display: block;
+    height: 3em;
+    width: 70%;
+    background: #22b2da;
+    color: var(--input-text-color);
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
     border: none;
 }
 
-button{
-    width: 400px;
-    height: 100px;
+button {
+    width: 70%;
+    height: 2.5em;
     background: #3b4a6b;
-    color: #f0d43a;
+    color: #fff;
     font-size: 26px;
     font-family: 'Oswald', sans-serif;
     border: none;
     box-shadow: 2px 4px 5px #444;
-}
-h1{
-    font-size: 36px;
+    cursor: pointer;
 }
 
-textarea{
-    background:#22b2da;
+button:hover {
+    color: #f0d43a;
+}
+
+textarea {
+    background: #22b2da;
     color: #f0d43a;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
+    width: 70%;
+    height: calc(100% - 2em);
+    border-radius: 2px;
+    border: none;
 }
+
 /* Reset style for HTML element on active to have no border*/
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
+input:focus, select:focus, textarea:focus, button:focus {
     outline: none;
 }
+
 /* Style for Placeholder Text*/
-::placeholder { /* Firefox, Chrome, Opera */ 
-    color: #f0d43a; 
+::placeholder {
+    /* Firefox, Chrome, Opera */
+    color: var(--input-text-color);
     font-family: 'Oswald', sans-serif;
+    font-style: italic;
+}
 
-} 
-  
-:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
-    color: #f0d43a; 
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: var(--input-text-color);
     font-family: 'Oswald', sans-serif;
+    font-style: italic;
+}
 
-} 
-  
-::-ms-input-placeholder { /* Microsoft Edge */ 
-    color: #f0d43a; 
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: var(--input-text-color);
     font-family: 'Oswald', sans-serif;
-
-} 
+    font-style: italic;
+}

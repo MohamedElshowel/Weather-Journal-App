@@ -96,11 +96,33 @@ const updateUI = async (zipCode) => {
     try {
         const data = await response.json();
         const updatedData = data[zipCode];
-        document.getElementById('date').innerHTML = updatedData.date;
-        document.getElementById('temp').innerHTML = Math.round(updatedData.temperature) + '°C';
-        document.getElementById('content').innerHTML = updatedData.userResponse;
+        // Update UI with latest weather info
+        document.querySelector('.entry .title').textContent = `Most Recent Entry for Zip Code (${zipCode}):`;
+        document.getElementById('date').innerHTML = '<b>Date: </b>' + updatedData.date;
+        document.getElementById('temp').innerHTML = '<b>Temperature: </b>' + Math.round(updatedData.temperature) + '°C';
+        let feelingElement = document.getElementById('content');
+        if (updatedData.userResponse) {
+            feelingElement.innerHTML = '<b>Feelings: </b>' + updatedData.userResponse;
+            feelingElement.style.display = 'block';
+        } else {
+            feelingElement.style.display = 'none';
+        }
+        
+        // Show weather data and hide the placeholder image
+        document.getElementById('dataPlaceholder').style.display = 'none';
+        document.getElementById('retrievedData').style.display = 'block';
+
+        resetInputFields();
     } catch (error) {
         console.log('error', error);
         alert(`Something went wrong while retrieving data from the server. ${error.message || error}.`);
     }
+}
+
+/**
+ * @description Reset HTML input fields to be ready for the next input.
+ */
+const resetInputFields = () => {
+    document.getElementById('zip').value = '';
+    document.getElementById('feelings').value = '';
 }
