@@ -39,7 +39,7 @@ npm install cors
 
 
 ## How To Use
-Run the server using node
+Run the server using node and open the browser on [`localhost:3000`](http://localhost:3000)
 ```
 node server.js
 ```
